@@ -1,0 +1,24 @@
+#!/bin/bash
+
+GN='\033[0;32m'
+NC='\033[0m'
+
+if [ -z "$IP" ]; then
+	echo "Error: please set the IP envrionment variable for the test device."
+	exit 1
+fi
+
+if [ -z "$SSHPASS" ]; then
+	echo "Error: please set the SSHPASS envrionment variable for the test device."
+	exit 1
+fi
+
+echo -e "${GN}Inspect networking devices on RPI3 ...${NC}"
+sshpass -e ssh -q -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@$IP ip link show
+
+echo
+
+echo -e "${GN}Inspect storage devices on RPI3 ...${NC}"
+sshpass -e ssh -q -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" root@$IP blkid
+
+echo
