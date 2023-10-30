@@ -68,9 +68,9 @@ func Start() {
 
 	// Which cold devices should we trigger hotplug events for?
 	coldplugFilter := []string{
-		"OF_NAME=wifi",         // WIFI on SDIO
-		"PRODUCT=fe6/9700/101", // USB Ethernet
-		"DEVNAME=sda1",         // USB Storage
+		"OF_NAME=phy",  // USB-PHY
+		"OF_NAME=usb",  // DWC2
+		"OF_NAME=wifi", // BRCMFMAC
 	}
 	for i, filter_line := range coldplugFilter {
 		fmt.Printf(" %d. %s\n",i,filter_line)
